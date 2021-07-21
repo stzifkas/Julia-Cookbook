@@ -1,6 +1,8 @@
 import Base.Threads.@spawn
 
 function quickSort(arr)
+    id = Threads.threadid()
+    # println("Sorting from thread $id")
     if length(arr) <= 1
         return arr
     end
@@ -15,7 +17,7 @@ function quickSort(arr)
     return result 
 end 
 
-A = rand(1000)*100
+A = rand(1000000)*1000
 A = floor.(A)
-B = quickSort(A)
-println(B)
+B = @time quickSort(A)
+# println(B)
